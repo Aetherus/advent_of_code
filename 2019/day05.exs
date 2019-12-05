@@ -61,14 +61,17 @@ defmodule IntcodeComputer do
 
   defp get_arg(program, position, 1), do: program[position]
 
+  @doc false
   def add(program, pointer, write_to, v1, v2) do
     {Map.put(program, write_to, v1 + v2), pointer + 4}
   end
 
+  @doc false
   def multiply(program, pointer, write_to, v1, v2) do
     {Map.put(program, write_to, v1 * v2), pointer + 4}
   end
 
+  @doc false
   def read(program, pointer, write_to) do
     value = IO.gets("A number: ")
             |> String.trim()
@@ -76,25 +79,31 @@ defmodule IntcodeComputer do
     {Map.put(program, write_to, value), pointer + 2}
   end
 
+  @doc false
   def print(program, pointer, _, value) do
     IO.puts(value)
     {program, pointer + 2}
   end
 
+  @doc false
   def jump_if_true(program, pointer, _, 0, _jump_to), do: {program, pointer + 3}
   def jump_if_true(program, _pointer, _,  _, jump_to), do: {program, jump_to}
 
+  @doc false
   def jump_if_false(program, _pointer, _, 0, jump_to), do: {program, jump_to}
   def jump_if_false(program, pointer, _, _v, _jump_to), do: {program, pointer + 3}
 
+  @doc false
   def less_than(program, pointer, write_to, v1, v2) do
     {Map.put(program, write_to, (if v1 < v2, do: 1, else: 0)), pointer + 4}
   end
 
+  @doc false
   def equal_to(program, pointer, write_to, v1, v2) do
     {Map.put(program, write_to, (if v1 == v2, do: 1, else: 0)), pointer + 4}
   end
 
+  @doc false
   def halt(program, _pointer, _), do: {program, :halt}
 end
 
