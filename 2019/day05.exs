@@ -11,6 +11,9 @@ defmodule IntcodeComputer do
     run(program, 0)
   end
 
+  # %{
+  #   op => {handler, arg_count, has_return}
+  # }
   @instructions %{
     1 => {:add, 2, true},
     2 => {:multiply, 2, true},
