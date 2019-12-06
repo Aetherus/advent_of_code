@@ -1,0 +1,5 @@
+File.stream!("./day02-input.txt")
+|> Stream.map(fn line -> line |> String.trim() |> String.split("x") |> Enum.map(&String.to_integer/1) |> Enum.sort() end)
+|> Stream.map(fn [a, b, c] -> 2 * a + 2 * b + a * b * c end)
+|> Enum.sum()
+|> IO.inspect()
